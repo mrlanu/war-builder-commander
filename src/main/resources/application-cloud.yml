@@ -1,0 +1,11 @@
+spring:
+  rabbitmq:
+    host: shrimp.rmq.cloudamqp.com
+    virtual-host: grqroqhj
+    username: grqroqhj
+    password: PIjQzsPYlidbC_-O5V1DfBLbFAIzNyi4
+    port: 8883
+    addresses: amqp://grqroqhj:PIjQzsPYlidbC_-O5V1DfBLbFAIzNyi4@shrimp.rmq.cloudamqp.com/grqroqhj
+
+server:
+  port: 10000

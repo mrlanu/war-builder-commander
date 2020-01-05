@@ -1,6 +1,6 @@
 package io.lanu.travian.warbuildercommander;
 
-import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -12,13 +12,8 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMqConfig {
 
     @Bean
-    public WarSender getSender(){
-        return new WarSender();
-    }
-
-    @Bean
-    public FanoutExchange fanout() {
-        return new FanoutExchange("my.fanout");
+    public DirectExchange directExchange() {
+        return new DirectExchange("my.direct");
     }
 
     @Bean

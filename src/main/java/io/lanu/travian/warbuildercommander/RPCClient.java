@@ -1,5 +1,6 @@
 package io.lanu.travian.warbuildercommander;
 
+import io.lanu.travian.warbuildercommander.models.AboutVillageModel;
 import io.lanu.travian.warbuildercommander.models.CommandMessage;
 import io.lanu.travian.warbuildercommander.models.CommandsEnum;
 import io.lanu.travian.warbuildercommander.models.VillageModel;
@@ -22,10 +23,10 @@ public class RPCClient {
         this.exchange = exchange;
     }
 
-    public List<VillageModel> send() {
+    public AboutVillageModel send(String villageName) {
         System.out.println(" [x] Requesting all villages...");
-        List<VillageModel> response = (List<VillageModel>) template.convertSendAndReceive
-                (exchange.getName(), "rpc", new CommandMessage(CommandsEnum.UPDATE, null));
+        AboutVillageModel response = (AboutVillageModel) template.convertSendAndReceive
+                (exchange.getName(), "rpc", new CommandMessage(CommandsEnum.UPDATE, villageName));
         return response;
     }
 }

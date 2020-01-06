@@ -1,5 +1,6 @@
 package io.lanu.travian.warbuildercommander;
 
+import io.lanu.travian.warbuildercommander.models.AboutVillageModel;
 import io.lanu.travian.warbuildercommander.models.VillageModel;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -50,6 +51,7 @@ public class RabbitMqConfig {
         DefaultClassMapper classMapper = new DefaultClassMapper();
         Map<String, Class<?>> idClassMapping = new HashMap<>();
         idClassMapping.put("io.lanu.travian.warbuilder.models.VillageModel", VillageModel.class);
+        idClassMapping.put("io.lanu.travian.warbuilder.models.AboutVillageModel", AboutVillageModel.class);
         classMapper.setIdClassMapping(idClassMapping);
         return classMapper;
     }

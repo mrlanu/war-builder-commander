@@ -19,6 +19,11 @@ public class AttacksController {
         this.rpcClient = rpcClient;
     }
 
+    @GetMapping("/wakeup")
+    public String wakeup(){
+        return "I'm ready, my commander";
+    }
+
     @PostMapping("/attacks")
     public String scheduleAttack(@RequestBody AttackRequest attackRequest){
         warSenderService.send(new CommandMessage(CommandsEnum.ATTACK, attackRequest));

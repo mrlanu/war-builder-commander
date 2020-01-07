@@ -15,17 +15,16 @@ import java.util.List;
 public class CommandMessage implements Serializable {
     private CommandsEnum command;
     private String villageName;
-    private List<AttackRequest> attackRequests;
+    private AttackRequest attackRequest;
 
     public CommandMessage(CommandsEnum command, String villageName) {
         this.command = command;
         this.villageName = villageName;
-        this.attackRequests = null;
+        this.attackRequest = null;
     }
 
-    public CommandMessage(CommandsEnum command, String villageName, List<AttackRequest> attackRequests) {
+    public CommandMessage(CommandsEnum command, AttackRequest attackRequest) {
         this.command = command;
-        this.villageName = villageName;
-        this.attackRequests = attackRequests;
+        this.attackRequest = attackRequest;
     }
 }

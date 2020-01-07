@@ -1,11 +1,12 @@
 package io.lanu.travian.warbuildercommander.controllers;
 
 import io.lanu.travian.warbuildercommander.RPCClient;
-import io.lanu.travian.warbuildercommander.models.*;
+import io.lanu.travian.warbuildercommander.models.AboutVillageModel;
+import io.lanu.travian.warbuildercommander.models.AttackRequest;
+import io.lanu.travian.warbuildercommander.models.CommandMessage;
+import io.lanu.travian.warbuildercommander.models.CommandsEnum;
 import io.lanu.travian.warbuildercommander.services.WarSenderService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public class AttacksController {
@@ -18,16 +19,15 @@ public class AttacksController {
         this.rpcClient = rpcClient;
     }
 
-    @PostMapping("/attacks/{villageName}")
-    public String scheduleAttack(@PathVariable String villageName,
-                                 @RequestBody List<AttackRequest> attackRequest){
-        warSenderService.send(new CommandMessage(CommandsEnum.ATTACK, villageName, attackRequest));
+    @PostMapping("/attacks")
+    public String scheduleAttack(@RequestBody AttackRequest attackRequest){
+        warSenderService.send(new CommandMessage(CommandsEnum.ATTACK, attackRequest));
         return "Attack has been created.";
     }
 
-    @GetMapping("/villages/{viilageName}")
-    public AboutVillageModel getAllVillages(@PathVariable String viilageName){
-        return rpcClient.send(viilageName);
+    @GetMapping("/villages/{villageName}")
+    public AboutVillageModel getAllVillages(@PathVariable String villageName){
+        return rpcClient.send(villageName);
     }
 
 }

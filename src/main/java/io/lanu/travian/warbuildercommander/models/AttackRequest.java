@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @ToString
 public class AttackRequest implements Serializable {
+    private String playerId;
     private String attackId;
     private boolean immediately;
     private String villageName;

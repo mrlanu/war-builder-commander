@@ -21,13 +21,19 @@ public class AttacksController {
 
     @PostMapping("/attacks")
     public String scheduleAttack(@RequestBody AttackRequest attackRequest){
-        warSenderService.send(new CommandMessage(CommandsEnum.ATTACK, attackRequest));
+        warSenderService.send(new CommandMessage(attackRequest.getPlayerId(), CommandsEnum.ATTACK, attackRequest));
         return "Attack has been created.";
     }
 
-    @GetMapping("/villages/{villageName}")
-    public AboutVillageModel getAllVillages(@PathVariable String villageName){
-        return rpcClient.send(villageName);
+    @PostMapping("/spam")
+    public String sendSpam(@RequestBody AttackRequest attackRequest){
+        warSenderService.send(new CommandMessage(attackRequest.getPlayerId(), CommandsEnum.SPAM, attackRequest));
+        return "Spam has been sent.";
+    }
+
+    @GetMapping("/villages/{playerId}/{villageName}")
+    public AboutVillageModel getAllVillages(@PathVariable String playerId, @PathVariable String villageName){
+        return rpcClient.send(playerId, villageName);
     }
 
 }

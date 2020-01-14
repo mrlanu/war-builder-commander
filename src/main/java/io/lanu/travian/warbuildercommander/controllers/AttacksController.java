@@ -25,7 +25,7 @@ public class AttacksController {
         return "Attack has been created.";
     }
 
-    @PostMapping("/spam")
+    @PostMapping("/spams")
     public String sendSpam(@RequestBody AttackRequest attackRequest){
         warSenderService.send(new CommandMessage(attackRequest.getPlayerId(), CommandsEnum.SPAM, attackRequest));
         return "Spam has been sent.";

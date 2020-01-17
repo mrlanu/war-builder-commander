@@ -3,6 +3,7 @@ package io.lanu.travian.warbuildercommander;
 import io.lanu.travian.warbuildercommander.models.AboutVillageModel;
 import io.lanu.travian.warbuildercommander.models.VillageModel;
 import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.DefaultClassMapper;
@@ -23,10 +24,10 @@ public class RabbitMqConfig {
         return new DirectExchange("my.rpc.direct");
     }
 
-    //config for Direct
-    @Bean(name = "direct")
-    public DirectExchange directExchange() {
-        return new DirectExchange("my.direct");
+    //config for Fanout
+    @Bean
+    public FanoutExchange fanoutExchange() {
+        return new FanoutExchange("my.fanout");
     }
 
     @Bean

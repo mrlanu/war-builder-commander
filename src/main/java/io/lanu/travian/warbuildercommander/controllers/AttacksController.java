@@ -31,9 +31,14 @@ public class AttacksController {
         return "Spam has been sent.";
     }
 
+    @GetMapping("/villages/{playerId}")
+    public AboutVillageModel getAllVillages(@PathVariable String playerId){
+        return rpcClient.sendReqForAllVillage(playerId);
+    }
+
     @GetMapping("/villages/{playerId}/{villageName}")
-    public AboutVillageModel getAllVillages(@PathVariable String playerId, @PathVariable String villageName){
-        return rpcClient.send(playerId, villageName);
+    public AboutVillageModel getAvailableTroops(@PathVariable String playerId, @PathVariable String villageName){
+        return rpcClient.sendReqForAvailableTroops(playerId, villageName);
     }
 
 }

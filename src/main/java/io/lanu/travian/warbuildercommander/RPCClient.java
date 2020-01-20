@@ -20,10 +20,15 @@ public class RPCClient {
         this.exchange = exchange;
     }
 
-    public AboutVillageModel send(String playerId, String villageName) {
+    public AboutVillageModel sendReqForAvailableTroops(String clientId, String villageName) {
         System.out.println(" [x] Requesting all villages...");
-        AboutVillageModel response = (AboutVillageModel) template.convertSendAndReceive
-                (exchange.getName(), "rpc", new CommandMessage(playerId, CommandsEnum.UPDATE, villageName));
-        return response;
+        return (AboutVillageModel) template.convertSendAndReceive
+                (exchange.getName(), "rpc", new CommandMessage(clientId, CommandsEnum.TROOPS, villageName));
+    }
+
+    public AboutVillageModel sendReqForAllVillage(String clientId) {
+        System.out.println(" [x] Requesting all villages...");
+        return (AboutVillageModel) template.convertSendAndReceive
+                (exchange.getName(), "rpc", new CommandMessage(clientId, CommandsEnum.ALL_VILLAGES, "null"));
     }
 }

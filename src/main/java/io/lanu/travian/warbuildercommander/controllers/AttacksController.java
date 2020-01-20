@@ -26,19 +26,24 @@ public class AttacksController {
 
     @PostMapping("/attacks")
     public String scheduleAttack(@RequestBody AttackRequest attackRequest){
-        warSenderService.send(new CommandMessage(attackRequest.getPlayerId(), CommandsEnum.ATTACK, attackRequest));
+        warSenderService.send(new CommandMessage(attackRequest.getClientId(), CommandsEnum.ATTACK, attackRequest));
         return "Attack has been created.";
     }
 
     @PostMapping("/spams")
     public String sendSpam(@RequestBody AttackRequest attackRequest){
-        warSenderService.send(new CommandMessage(attackRequest.getPlayerId(), CommandsEnum.SPAM, attackRequest));
+        warSenderService.send(new CommandMessage(attackRequest.getClientId(), CommandsEnum.SPAM, attackRequest));
         return "Spam has been sent.";
     }
 
-    @GetMapping("/villages/{playerId}/{villageName}")
-    public AboutVillageModel getAllVillages(@PathVariable String playerId, @PathVariable String villageName){
-        return rpcClient.send(playerId, villageName);
+    @GetMapping("/villages/{clientId}")
+    public AboutVillageModel getAllVillages(@PathVariable String clientId){
+        return rpcClient.sendReqForAllVillage(clientId);
+    }
+
+    @GetMapping("/villages/{clientId}/{villageName}")
+    public AboutVillageModel getAvailableTroops(@PathVariable String clientId, @PathVariable String villageName){
+        return rpcClient.sendReqForAvailableTroops(clientId, villageName);
     }
 
 }

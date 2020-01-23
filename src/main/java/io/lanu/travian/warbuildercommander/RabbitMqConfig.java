@@ -35,6 +35,7 @@ public class RabbitMqConfig {
     {
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
         template.setMessageConverter(messageConverter());
+        template.setReplyTimeout(20000);
         return template;
     }
 

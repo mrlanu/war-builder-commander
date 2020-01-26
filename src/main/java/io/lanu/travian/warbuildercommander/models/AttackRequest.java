@@ -21,4 +21,5 @@ public class AttackRequest implements Serializable {
     private Integer kindAttack;
     private List<WaveModel> waves;
     private Date time; // format HH:MM:SS
+    private long timeCorrection;
 }
